@@ -24,6 +24,7 @@
     "@graphql-tools/schema": "^10.0.26",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "graphql-tag": "^2.12.6",
     "mongoose": "^8.19.2"
   }
 }
