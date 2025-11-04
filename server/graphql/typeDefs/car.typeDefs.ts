@@ -6,6 +6,11 @@ export const carTypeDefs = gql`
     public_id: String!
   }
 
+  type CarRatings {
+    value: Float
+    count: Int
+  }
+
   type Car {
     id: ID!
     name: String!
@@ -15,7 +20,7 @@ export const carTypeDefs = gql`
     address: String!
     year: Int!
     power: Int!
-    milleage: Int!
+    mileage: Int!
     brand: String!
     transmission: String!
     fuelType: String!
@@ -23,6 +28,7 @@ export const carTypeDefs = gql`
     doors: Int!
     images: [CarImages]
     category: String!
+    ratings: CarRatings
     createdAt: String
     updatedAt: String
   }
@@ -35,7 +41,7 @@ export const carTypeDefs = gql`
     address: String!
     year: Int!
     power: Int!
-    milleage: Int!
+    mileage: Int!
     brand: String!
     transmission: String!
     fuelType: String!
@@ -47,6 +53,7 @@ export const carTypeDefs = gql`
 
   type Query {
     getAllCars: [Car]
+    getCarById(carId: ID!): Car
   }
 
   type Mutation {

@@ -7,7 +7,7 @@ export type CarInput = {
   brand: string;
   year: number;
   transmission: string;
-  milleage: number;
+  mileage: number;
   power: number;
   seats: number;
   doors: number;
