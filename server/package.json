@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec ts-node app.ts"
+    "dev": "nodemon --exec ts-node app.ts",
+    "seeder": "ts-node seeder/seeder.ts"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
@@ -28,3 +29,4 @@
     "mongoose": "^8.19.2"
   }
 }
+
