@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
+import { CarStatus } from '@go-rental/shared';
 
 const carSchema = new mongoose.Schema(
   {
     name: { type: String, required: [true, 'Please enter car name'] },
     description: { type: String, required: [true, 'Please enter car description'] },
-    status: { type: String, default: 'Draft' },
+    status: { type: String, default: CarStatus.Draft, enum: { values: CarStatus } },
     rentPerDay: { type: Number, required: [true, 'Please enter rent per day'] },
     address: { type: String, required: [true, 'Please enter address'] },
     images: [{ url: String, public_id: String }],
