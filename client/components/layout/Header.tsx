@@ -57,8 +57,7 @@ const Header = () => {
           </SheetHeader>
           <div className='grid w-[250px] p-4'>
             <div className='flex items-center mb-3'>
-              <span className='me-4'></span>
-              <Button asChild>
+              <Button asChild className='me-4'>
                 <Link href='/login'>Login</Link>
               </Button>
               <Button variant='outline' size='icon' className='overflow-hidden rounded-full'>
