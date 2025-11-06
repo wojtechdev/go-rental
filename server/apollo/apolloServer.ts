@@ -4,6 +4,7 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { json, type Application } from 'express';
 import { carTypeDefs } from '../graphql/typeDefs/car.typeDefs.ts';
 import { carResolvers } from '../graphql/resolvers/car.resolvers.ts';
+import cors from 'cors';
 
 export async function startApolloServer(app: Application) {
   // Types, schemas, queries and mutations
@@ -22,5 +23,10 @@ export async function startApolloServer(app: Application) {
 
   await apolloServer.start();
 
-  app.use('/graphql', json(), expressMiddleware(apolloServer));
+  const corsOptions = {
+    credentials: true,
+    origin: [process.env.CLIENT_URL || 'http://localhost:3000'],
+  };
+
+  app.use('/graphql', cors(corsOptions), json(), expressMiddleware(apolloServer));
 }
