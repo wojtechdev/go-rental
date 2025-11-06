@@ -6,12 +6,12 @@ import { useQuery } from '@apollo/client/react';
 import { GET_ALL_CARS } from './graphql/queries/car.queries';
 import { ICar } from '@go-rental/shared';
 
-type GetAllCarsData = {
+type TGetAllCarsData = {
   getAllCars: Array<ICar>;
 };
 
 export default function Home() {
-  const { data, loading, error } = useQuery<GetAllCarsData>(GET_ALL_CARS);
+  const { data, loading, error } = useQuery<TGetAllCarsData>(GET_ALL_CARS);
 
   console.log(error);
 
