@@ -4,7 +4,7 @@ import { Badge } from '../ui/badge';
 import { CarFront, CircleDot, MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ICar } from '@go-rental/shared/dist/interfaces';
+import { ICar } from '@go-rental/shared';
 import StarRatings from 'react-star-ratings';
 
 const CardItem = ({ car }: { car: ICar }) => {
@@ -43,7 +43,7 @@ const CardItem = ({ car }: { car: ICar }) => {
           </div>
           <div className='flex items-center justify-between mt-6'>
             <span className='text-xl font-bold text-gray-900'>
-              ${car?.rentPerDay} <p className='text-xs font-thin text-gray-700 ms-1'>rent per day</p>
+              ${car?.rentPerDay} <span className='text-xs font-thin text-gray-700 ms-1'>rent per day</span>
             </span>
             <Button size='sm' className='px-4' asChild>
               <Link href={`/car/${car?.id}`}>

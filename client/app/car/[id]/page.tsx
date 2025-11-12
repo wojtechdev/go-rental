@@ -26,8 +26,6 @@ export default function CarDetails() {
     variables: { carId: id },
   });
 
-  console.log(id);
-
   if (loading) {
     return <LoadingSpinner size={60} fullScreen={true} />;
   }
@@ -69,9 +67,9 @@ export default function CarDetails() {
                         starDimension='25px'
                         starSpacing='1px'
                       />
-                      <p className='ms-2 text-sm font-bold text-gray-900 dark:text-white'>{car?.ratings.value}</p>
+                      <p className='ms-2 text-sm font-bold text-gray-900 dark:text-white'>{car?.ratings?.value}</p>
                       <span className='w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400'></span>
-                      <p className='text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white'>{car?.ratings.count} reviews</p>
+                      <p className='text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white'>{car?.ratings?.count} reviews</p>
                     </div>
 
                     <DropdownMenuSeparator />
