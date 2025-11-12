@@ -5,6 +5,7 @@ import { CarFront, CircleDot, MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ICar } from '@go-rental/shared/dist/interfaces';
+import StarRatings from 'react-star-ratings';
 
 const CardItem = ({ car }: { car: ICar }) => {
   return (
@@ -35,7 +36,7 @@ const CardItem = ({ car }: { car: ICar }) => {
             </Badge>
           </div>
           <div className='flex items-center my-2'>
-            {/* Star Ratings Component */}
+            <StarRatings rating={car?.ratings.value} numberOfStars={5} starRatedColor='orange' name='rating' starDimension='22px' starSpacing='1px' />
             <p className='ms-2 text-sm font-bold text-gray-900 dark:text-white'>{car?.ratings?.value}</p>
             <span className='w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400'></span>
             <p className='text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white'>{car?.ratings?.count} reviews</p>

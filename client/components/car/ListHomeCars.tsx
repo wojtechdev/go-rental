@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import CardItem from './CarItem';
 import { ICar } from '@go-rental/shared';
+import LoadingSpinner from '../layout/LoadingSpinner';
 
 interface IListHomeCarsProps {
   cars: Array<ICar> | undefined;
@@ -12,7 +13,7 @@ interface IListHomeCarsProps {
 
 const ListHomeCars = ({ cars, loading }: IListHomeCarsProps) => {
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner size={60} fullScreen={true} />;
   }
 
   return (

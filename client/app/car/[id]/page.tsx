@@ -13,6 +13,8 @@ import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { ICar } from '@go-rental/shared/dist/interfaces';
 import { useParams } from 'next/navigation';
+import StarRatings from 'react-star-ratings';
+import LoadingSpinner from '@/components/layout/LoadingSpinner';
 
 type TGetCarsByIdData = {
   getCarById: ICar;
@@ -27,7 +29,7 @@ export default function CarDetails() {
   console.log(id);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner size={60} fullScreen={true} />;
   }
 
   if (error) {
@@ -50,7 +52,7 @@ export default function CarDetails() {
                   </Badge>
                 </CardTitle>
                 <div className='text-sm text-muted-foreground'>
-                  <CarImagesSlider />
+                  <CarImagesSlider images={car?.images} />
                   <div className='px-8 mt-5'>
                     <h1 className='text-3xl font-bold'>{car?.name}</h1>
 
@@ -59,7 +61,14 @@ export default function CarDetails() {
                     </p>
 
                     <div className='flex items-center my-5'>
-                      {/* Star Rating Component */}
+                      <StarRatings
+                        rating={car?.ratings.value}
+                        numberOfStars={5}
+                        starRatedColor='orange'
+                        name='rating'
+                        starDimension='25px'
+                        starSpacing='1px'
+                      />
                       <p className='ms-2 text-sm font-bold text-gray-900 dark:text-white'>{car?.ratings.value}</p>
                       <span className='w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400'></span>
                       <p className='text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white'>{car?.ratings.count} reviews</p>
