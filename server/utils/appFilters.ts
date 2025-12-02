@@ -23,6 +23,13 @@ class ApiFilters {
     this.model = this.model.find({ ...searchQuery });
     return this;
   }
+
+  filters(filters: any) {
+    let filterString = JSON.stringify(filters);
+    filterString = filterString.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
+    this.model = this.model.find(JSON.parse(filterString));
+    return this;
+  }
 }
 
 export default ApiFilters;

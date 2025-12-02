@@ -1,9 +1,9 @@
 import { createCar, deleteCar, getAllCars, getCarById, updateCar } from '../../controllers/car.controller.ts';
-import type { CarInput } from '../../types/car.types.ts';
+import type { CarFilters, CarInput } from '../../types/car.types.ts';
 
 export const carResolvers = {
   Query: {
-    getAllCars: async (_: any, { query }: { query: string }) => await getAllCars(query),
+    getAllCars: async (_: any, { filters, query }: { filters: CarFilters; query: string }) => await getAllCars(filters, query),
     getCarById: async (_: any, { carId }: { carId: string }) => await getCarById(carId),
   },
   Mutation: {
