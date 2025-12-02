@@ -3,7 +3,7 @@ import type { CarInput } from '../../types/car.types.ts';
 
 export const carResolvers = {
   Query: {
-    getAllCars: async (parent: any) => await getAllCars(),
+    getAllCars: async (_: any, { query }: { query: string }) => await getAllCars(query),
     getCarById: async (_: any, { carId }: { carId: string }) => await getCarById(carId),
   },
   Mutation: {

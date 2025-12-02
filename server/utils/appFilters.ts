@@ -1,0 +1,28 @@
+import mongoose from 'mongoose';
+
+class ApiFilters {
+  model: any;
+
+  constructor(model: any) {
+    this.model = model;
+  }
+
+  search(query: string) {
+    const searchById = {
+      _id: query,
+    };
+
+    const searchByKeyword = {
+      name: {
+        $regex: query,
+        $options: 'i',
+      },
+    };
+
+    const searchQuery = query ? (mongoose.isValidObjectId(query) ? searchById : searchByKeyword) : {};
+    this.model = this.model.find({ ...searchQuery });
+    return this;
+  }
+}
+
+export default ApiFilters;
