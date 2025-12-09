@@ -25,9 +25,16 @@ class ApiFilters {
   }
 
   filters(filters: any) {
-    let filterString = JSON.stringify(filters);
+    const filtersCopy = { ...filters };
+    let filterString = JSON.stringify(filtersCopy);
     filterString = filterString.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
     this.model = this.model.find(JSON.parse(filterString));
+    return this;
+  }
+
+  pagination(page: string | number, resPerPage: number) {
+    const currentPage = Number(page) || 1;
+    this.model = this.model.limit(resPerPage).skip(resPerPage * (currentPage - 1));
     return this;
   }
 }
