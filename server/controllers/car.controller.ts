@@ -1,9 +1,17 @@
 import Car from '../models/car.model.ts';
-import type { CarInput } from '../types/car.types.ts';
+import type { CarFilters, CarInput } from '../types/car.types.ts';
+import ApiFilters from '../utils/appFilters.ts';
 
-export const getAllCars = async () => {
-  const cars = await Car.find();
-  return cars;
+export const getAllCars = async (page: number, filters: CarFilters, query: string) => {
+  const resPerPage = 3;
+  const apiFilters = new ApiFilters(Car).search(query).filters(filters);
+
+  let cars = await apiFilters.model;
+  const totalCount = cars.length;
+  apiFilters.pagination(page, resPerPage);
+  cars = await apiFilters.model.clone();
+
+  return { cars, pagination: { totalCount, resPerPage } };
 };
 
 export const createCar = async (carInput: CarInput) => {
