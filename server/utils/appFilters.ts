@@ -7,6 +7,10 @@ class ApiFilters {
     this.model = model;
   }
 
+  private escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
   search(query: string) {
     const searchById = {
       _id: query,
@@ -14,7 +18,7 @@ class ApiFilters {
 
     const searchByKeyword = {
       name: {
-        $regex: query,
+        $regex: this.escapeRegex(query),
         $options: 'i',
       },
     };
@@ -24,7 +28,8 @@ class ApiFilters {
     return this;
   }
 
-  filters(filters: any) {
+  filters(filters: any | null) {
+    if (!filters) return this;
     const filtersCopy = { ...filters };
     let filterString = JSON.stringify(filtersCopy);
     filterString = filterString.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
